@@ -78,7 +78,10 @@ static usb_status_t USB_DeviceHidMouseAction(void)
         RIGHT,
         DOWN,
         LEFT,
-        UP
+        UP,
+		LEFTN,
+		RIGHTN,
+		STOP
     };
     static uint8_t dir = RIGHT;
 
@@ -86,7 +89,6 @@ static usb_status_t USB_DeviceHidMouseAction(void)
     {
         case RIGHT:
             /* Move right. Increase X value. */
-            s_UsbDeviceHidMouse.buffer[0] = 0U;
             s_UsbDeviceHidMouse.buffer[1] = 1U;
             s_UsbDeviceHidMouse.buffer[2] = 0U;
             x++;
@@ -124,10 +126,25 @@ static usb_status_t USB_DeviceHidMouseAction(void)
             y--;
             if (y < 1U)
             {
-                s_UsbDeviceHidMouse.buffer[0] = 0U;
-                dir = RIGHT;
+                dir++;
             }
             break;
+        case LEFTN:
+				/* Move left. Discrease X value. */
+				s_UsbDeviceHidMouse.buffer[1] = (uint8_t)(0xFFU);
+				s_UsbDeviceHidMouse.buffer[2] = 0U;
+				x--;
+				if (x < 1U)
+				{
+					dir++;
+				}
+				break;
+        case STOP:
+        	x=0;
+        	s_UsbDeviceHidMouse.buffer[1] = 0U;
+        	s_UsbDeviceHidMouse.buffer[2] = 0U;
+        	break;
+
         default:
             break;
     }

@@ -115,7 +115,22 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
 		UNENTER3,
 		WINR5,
 		RIGHTARROW,
-		END
+		UNGUI,
+		UNARROW,
+		H,
+		O3,
+		L,
+		A4,
+		SPACE,
+		M2,
+		U,
+		N4,
+		D3,
+		O4,
+		CTRL,
+		E3,
+		C,
+		V
     };
     static uint8_t dir = WINR;
 
@@ -126,7 +141,7 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
     break;
 		case START:
 				  x++;
-				  if (x > 200U)
+				  if (x > 500)
 				  {
 					  dir++;
 
@@ -246,12 +261,15 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
                    break;
         case UNENTER:
        		   x--;
+   			   s_UsbDeviceHidKeyboard.buffer[4] = 0;
+
        		   if (x < 1U)
        		   {
        			   dir++;
        			   s_UsbDeviceHidKeyboard.buffer[4] = 0;
        		   }
        		   break;
+       //BRINCAR A MOUSE PARA DIBUJAR CUADRADO
         case WINR2:
                    x++;
                    if (x > 200U)
@@ -358,6 +376,8 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
                           break;
                case UNENTER2:
               		   x--;
+          			   s_UsbDeviceHidKeyboard.buffer[4] = 0;
+
               		   if (x < 1U)
               		   {
               			   dir++;
@@ -379,7 +399,7 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
 						  if (x < 1U)
 						  {
 							  dir++;
-							  s_UsbDeviceHidKeyboard.buffer[7] = KEY_LEFTARROW;
+							  s_UsbDeviceHidKeyboard.buffer[5] = KEY_LEFTARROW;
 						  }
 						  break;
 		        case WINR4:
@@ -489,6 +509,8 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
 		                          break;
 		               case UNENTER3:
 		              		   x--;
+	              			   s_UsbDeviceHidKeyboard.buffer[4] = 0;
+
 		              		   if (x < 1U)
 		              		   {
 		              			   dir++;
@@ -510,9 +532,161 @@ static usb_status_t USB_DeviceHidKeyboardAction(void)
 								  if (x < 1U)
 								  {
 									  dir++;
-									  s_UsbDeviceHidKeyboard.buffer[7] = KEY_RIGHTARROW;
+									  s_UsbDeviceHidKeyboard.buffer[6] = KEY_RIGHTARROW;
 								  }
 								  break;
+					///BRINCAR A MOUSE IR A IZQUIERDA Y HACER CLICK
+					   case UNGUI:
+							   x++;
+							   if (x > 200U)
+							   {
+								   dir++;
+									  s_UsbDeviceHidKeyboard.buffer[6] = 0;
+
+
+							   }
+							   break;
+					   case UNARROW:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+                               s_UsbDeviceHidKeyboard.buffer[7] = 0;
+						   }
+						   break;
+					   case H:
+							   x++;
+							   if (x > 200U)
+							   {
+								   dir++;
+								   s_UsbDeviceHidKeyboard.buffer[2] = KEY_H;
+
+
+							   }
+							   break;
+					   case O3:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_O;
+						   }
+						   break;
+					   case L:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_L;
+
+
+						   }
+						   break;
+					   case A4:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_A;
+						   }
+						   break;
+					   case SPACE:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[4] = KEY_SPACEBAR;
+
+
+
+						   }
+						   break;
+					   case M2:
+						   x--;
+						   s_UsbDeviceHidKeyboard.buffer[4] = 0;
+
+						   if (x < 1U)
+						   {
+							   dir++;
+
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_M;
+						   }
+						   break;
+
+					   case U:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_U;
+
+
+						   }
+						   break;
+					   case N4:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_N;
+						   }
+						   break;
+					   case D3:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_D;
+
+
+						   }
+						   break;
+					   case O4:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_O;
+						   }
+						   break;
+					   case CTRL:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[7] = KEY_LEFTCONTROL;	//
+
+
+						   }
+						   break;
+					   case E3:
+						   x--;
+						   if (x < 1U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_E;
+						   }
+						   break;
+					   case C:
+						   x++;
+						   if (x > 200U)
+						   {
+							   dir++;
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_C;
+
+
+						   }
+						   break;
+							//BRINCAR A MOUSE PARA IR A DERECHA
+
+					   case V:
+						   x--;
+						   if (x < 1U)
+						   {
+							   s_UsbDeviceHidKeyboard.buffer[2] = KEY_V;
+
+						   }
+						   break;
     }
     return USB_DeviceHidSend(s_UsbDeviceComposite->hidKeyboardHandle, USB_HID_KEYBOARD_ENDPOINT_IN,
                              s_UsbDeviceHidKeyboard.buffer, USB_HID_KEYBOARD_REPORT_LENGTH);
